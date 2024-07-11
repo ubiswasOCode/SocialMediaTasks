@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/249b712e24.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+
+    <style>
+        .content {
+            background-color: rgb(181, 197, 197);
+            min-height: 600px;
+        }
+        .fields{
+            margin-top: 50px;
+        }
+        .apps{
+            min-height: 80px;
+            border: 1px solid black;
+        }
+       
+    </style>
+
+
+</head>
+
+<body>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary w-50"><i
+                                class="fa-solid fa-house fs-6 me-2"></i>Home</button>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mt-4 w-50"><i class="fa-solid fa-user fs-6 me-2"></i>Add Apps </button>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mt-4 w-50"><i class="fa-solid fa-hand-point-up fs-6 me-2"></i>Points </button>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mt-4 w-50"><i class="fa-solid fa-list-check fs-6 me-2"></i>Tasks </button>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mt-4 w-50"><i class="fa-solid fa-right-from-bracket fs-6 me-2"></i>Logout </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-4 content">
+
+            <div class="mt-4 apps">
+               <div class="row">
+
+                <div class="col-md-3 mb-3 mt-4 text-center">
+                    <img id="uploadImage" width="50" height="50"
+                    src="https://img.icons8.com/ios/50/placeholder-thumbnail-document.png"
+                    alt="placeholder-thumbnail-document" />
+                </div>
+
+                <div class="col-md-6 mb-3 text-center mt-3">
+                    <h5>Facebook</h5>
+                    <a href="social-media-details-page">View details</a>
+                </div>
+
+                <div class="col-md-3 mb-3 text-center mt-3">
+                    <button type="button" class="btn btn-primary">100 Points</button>
+                </div>
+               </div>
+            </div>
+
+
+            
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+
+</body>
+<script>
+    document.getElementById('uploadImage').addEventListener('click', function () {
+        document.getElementById('formFile').click();
+    });
+</script>
+
+</html>
