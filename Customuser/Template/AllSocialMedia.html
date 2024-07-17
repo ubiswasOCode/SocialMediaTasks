@@ -12,8 +12,7 @@
 
     <style>
         .content {
-            background-color: rgb(181, 197, 197);
-            min-height: 600px;
+            background-color: rgb(181, 197, 197)
         }
         .fields{
             margin-top: 50px;
@@ -35,11 +34,11 @@
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary w-50"><i
+                        <button type="button" class="btn btn-primary w-50"  onclick="ShowApps()"><i
                                 class="fa-solid fa-house fs-6 me-2"></i>Home</button>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary mt-4 w-50"><i class="fa-solid fa-user fs-6 me-2"></i>Add Apps </button>
+                        <button type="button" class="btn btn-primary mt-4 w-50"  onclick="ShowUserDetails()"><i class="fa-solid fa-user fs-6 me-2"></i>Profile </button>
                     </div>
                     <div class="text-center">
                         <button type="button" class="btn btn-primary mt-4 w-50"><i class="fa-solid fa-hand-point-up fs-6 me-2"></i>Points </button>
@@ -48,7 +47,7 @@
                         <button type="button" class="btn btn-primary mt-4 w-50"><i class="fa-solid fa-list-check fs-6 me-2"></i>Tasks </button>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary mt-4 w-50"><i class="fa-solid fa-right-from-bracket fs-6 me-2"></i>Logout </button>
+                        <button type="button" class="btn btn-primary mt-4 w-50" onclick="Logout()"><i class="fa-solid fa-right-from-bracket fs-6 me-2"></i>Logout </button>
                     </div>
                 </div>
 
@@ -58,23 +57,38 @@
         <div class="col-md-4 content">
 
             <div class="mt-4 apps">
-               <div class="row">
-
-                <div class="col-md-3 mb-3 mt-4 text-center">
-                    <img id="uploadImage" width="50" height="50"
-                    src="https://img.icons8.com/ios/50/placeholder-thumbnail-document.png"
-                    alt="placeholder-thumbnail-document" />
+                <div id="Table_Data">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 10%;">Image</th>
+                            <th class="text-center" style="width: 70%;">App Name</th>
+                            <th class="text-center" style="width: 20%;">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in AppsData %}
+                            <tr>
+                                <td class="text-center" style="width: 10%;">
+                                    <img width="50" height="50" src="http://{{ request.META.HTTP_HOST }}{{ app.image.url }}" alt="placeholder-thumbnail-document" />
+                                </td>
+                                <td class="text-center" style="width: 70%;">
+                                    <h5>{{ app.app_name }}</h5>
+                                    <a href="/social-media-details-page/{{ app.id }}" >View details</a>
+                                </td>
+                                <td class="text-center" style="width: 20%;">
+                                    <button type="button" class="btn btn-primary">100 Points</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
                 </div>
 
-                <div class="col-md-6 mb-3 text-center mt-3">
-                    <h5>Facebook</h5>
-                    <a href="social-media-details-page">View details</a>
+                <div id="Profile" style="display: none;">
+                    <p id="UserName"></p>
+                    <p id="UserEmail"></p>
                 </div>
-
-                <div class="col-md-3 mb-3 text-center mt-3">
-                    <button type="button" class="btn btn-primary">100 Points</button>
-                </div>
-               </div>
             </div>
 
 
@@ -87,10 +101,36 @@
     </div>
 
 </body>
+
 <script>
-    document.getElementById('uploadImage').addEventListener('click', function () {
-        document.getElementById('formFile').click();
-    });
+
+// Retrieve the data from localStorage
+let storedData = localStorage.getItem('dataKey');
+let UserObj = JSON.parse(storedData);
+console.log(UserObj, '------------UserObj');
+
+document.getElementById("UserName").innerHTML=UserObj.user.first_name;
+document.getElementById("UserEmail").innerHTML=UserObj.user.email;
+
+
+    function ShowUserDetails()
+    {
+      
+        document.getElementById("Table_Data").style.display="none"; 
+        document.getElementById("Profile").style.display="block";
+    }
+
+    function Logout()
+    {
+        localStorage.removeItem('dataKey');
+        window.location.href = '/';
+    }
+
+    function ShowApps()
+    {
+    document.getElementById("Table_Data").style.display="block";
+    document.getElementById("Profile").style.display="none";
+    }
 </script>
 
 </html>

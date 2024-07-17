@@ -40,8 +40,8 @@
                                 class="fa-solid fa-house fs-6 me-2"></i>Home</button>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary mt-4 w-50"><i
-                                class="fa-solid fa-user fs-6 me-2"></i>Add Apps </button>
+                        <button type="button" class="btn btn-primary mt-4 w-50"  onclick="ShowUserDetails()"><i class="fa-solid fa-user fs-6 me-2"></i>Profile </button>
+
                     </div>
                     <div class="text-center">
                         <button type="button" class="btn btn-primary mt-4 w-50"><i
@@ -52,8 +52,8 @@
                                 class="fa-solid fa-list-check fs-6 me-2"></i>Tasks </button>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary mt-4 w-50"><i
-                                class="fa-solid fa-right-from-bracket fs-6 me-2"></i>Logout </button>
+                        <button type="button" class="btn btn-primary mt-4 w-50" onclick="Logout()"><i class="fa-solid fa-right-from-bracket fs-6 me-2"></i>Logout </button>
+
                     </div>
                 </div>
 
@@ -72,12 +72,12 @@
                     </div>
 
                     <div class="col-md-6 mb-3 text-center mt-3">
-                        <h5>Facebook</h5>
-                        <a href=""></a>
+                        <h5>{{ app.app_name }} </h5>
+                        <a href="{{ app.app_link }}" target="_blank">{{ app.app_link }}</a>
                     </div>
 
                     <div class="col-md-3 mb-3 text-center mt-3">
-                        <button type="button" class="btn btn-primary">100 Points</button>
+                        <button type="button" class="btn btn-primary">{{ app.points }} Points</button>
                     </div>
                 </div>
             </div>
@@ -99,6 +99,19 @@
     document.getElementById('uploadImage').addEventListener('click', function () {
         document.getElementById('formFile').click();
     });
+
+
+    function ShowUserDetails()
+    {
+      
+        document.getElementById("Table_Data").style.display="none";
+    }
+
+    function Logout()
+    {
+        localStorage.removeItem('dataKey');
+        window.location.href = '/';
+    }
 </script>
 
 </html>
